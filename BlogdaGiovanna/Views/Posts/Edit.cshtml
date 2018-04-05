@@ -1,0 +1,30 @@
+﻿@model BlogdaGiovanna.Models.Post
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Save", "Posts", FormMethod.Post, new { enctype = "multipart/form-date" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Title)
+        @Html.TextBoxFor(p => p.Title, new { @class = "from-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.PostingBody)
+        @Html.TextAreaFor(p => p.PostingBody, new { @class = "from-control" })
+    </div>
+
+    @Html.HiddenFor(p => p.id)
+    <div class="from-group">
+        <input type="submit" volue="salvar" class="btn btn-primary" />
+    </div>
+}
+@section scripts
+{
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' })</script>
+}

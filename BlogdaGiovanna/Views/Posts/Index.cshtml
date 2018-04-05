@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<BlogdaGiovanna.Models.Post>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Novo Post", "New", "Posts", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+@if (!Model.Any())
+{
+    <p>Ainda não temos nenhuma postagem no Blog! :( </p>
+}
+else
+{
+    <table id="posts" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Data do Post</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(post.Title, "Details", "Posts", new { id = post.id }, null)
+                    </td>
+                    <td>
+                        @post.DateAdded
+                    </td>
+                    <td>
+                        @Html.Raw(post.PostingBody)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
